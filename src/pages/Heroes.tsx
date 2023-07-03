@@ -16,6 +16,7 @@ const Heroes = () => {
 	// API call forbiden here
 
 	useEffect(() => {
+		// API call
 		console.log("Rendering Heroes Page - Only runs on first mount");
 		return () => {
 			console.log("Clean up effect - Empty dependency array - Will run only once, on unmount");
