@@ -7,9 +7,15 @@ for (let i = 97; i <= 122; i++) {
 	arrayOfLetters.push(String.fromCharCode(i));
 }
 
-const getHeroesByLetter = (letter: string) => {
+const getHeroesByLetter = (letter: string, { signal }: {
+	signal?: any
+} = {}) => {
+	// const controller = new AbortController();
+	// const signal = controller.signal;
+	// controller.abort();
 	return fetch(`http://localhost:4000/heroes?name_like=^${letter}`, {
 		method: "GET", // POST, PATCH, PUT, DELETE
+		signal: signal,
 	}).then((response) => response.json());
 };
 
@@ -28,30 +34,33 @@ const Heroes = () => {
 	// API call forbiden here
 
 	useEffect(() => {
-		console.log("Rendering Heroes Page - Only runs on first mount");
-		getHeroesByLetter('a').then((data) => {
+		// console.log("Rendering Heroes Page - Only runs on first mount");
+		const constroller = new AbortController();
+		const signal = constroller.signal
+		getHeroesByLetter('a', { signal: signal}).then((data) => {
 			console.log(data);
 			setHeroes(data);
 		});
 		return () => {
-			console.log(
-				"Clean up effect - Empty dependency array - Will run only once, on unmount",
-			);
+			constroller.abort();
+			// console.log(
+			// 	"Clean up effect - Empty dependency array - Will run only once, on unmount",
+			// );
 		};
 	}, []);
 
 	useEffect(() => {
 		// Fetch data from backend
 		// roomId - subscribe to room with id 101
-		console.log(
-			"Rendering Heroes Page - On first mount AND each time selectedLetter changes",
-		);
+		// console.log(
+		// 	"Rendering Heroes Page - On first mount AND each time selectedLetter changes",
+		// );
 		return () => {
 			// unsubscribe from room id 101
-			console.log(
-				"Clean up effect - Will run eacg time selectedLetter changes",
-				selectedLetter,
-			);
+			// console.log(
+			// 	"Clean up effect - Will run each time selectedLetter changes",
+			// 	selectedLetter,
+			// );
 		};
 	}, [selectedLetter]);
 
@@ -61,6 +70,7 @@ const Heroes = () => {
 			<ul className="flex justify-center gap-2 uppercase font-semibold text-xl">
 				{arrayOfLetters.map((letter) => (
 					<li
+						key={letter}
 						onClick={() => callback(letter)}
 						className={
 							selectedLetter === letter
