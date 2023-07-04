@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import HeroCard from "../components/HeroCard";
-import { useGetHeroesByLetter } from '../hooks/useGetHeroesByLetter'
+import { useGetHeroesByLetter } from "../hooks/useGetHeroesByLetter";
+import { Link } from "react-router-dom";
 
 const arrayOfLetters: Array<string> = [];
 for (let i = 97; i <= 122; i++) {
@@ -57,7 +58,11 @@ const Heroes = () => {
 				)}
 				{!isLoading &&
 					!isError &&
-					heroes.map((hero) => <HeroCard key={hero.id} hero={hero} />)}
+					heroes.map((hero) => (
+						<Link to={`${hero.id}`}>
+							<HeroCard key={hero.id} hero={hero} />
+						</Link>
+					))}
 			</div>
 		</section>
 	);
