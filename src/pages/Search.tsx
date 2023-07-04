@@ -6,10 +6,6 @@ import { Hero } from "../types/hero";
 
 const Search = () => {
 	const inputRef = useRef<HTMLInputElement>(null);
-	// When the user click on Search, I should show a loading indicator and them show the result for the give request
-	// Example: http://localhost:4000/heroes?name_like=hulk
-
-	// If question, troubles, don't hesitate to ask me (vocally or by chat)
 	const {
 		data: heroes,
 		isFetching,
