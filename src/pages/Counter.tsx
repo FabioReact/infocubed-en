@@ -1,26 +1,17 @@
-import { useState } from "react";
+import { useCounter } from '../hooks/useCounter'
 
 const Counter = () => {
-	const initialValue = 0;
-	const [counter, setCounter] = useState(initialValue);
-	const [connected, setConnected] = useState(false);
-	const increment = () => {
-		// setCounter will be asynchronous
-		setCounter((previousCounter) => previousCounter + 1);
-	};
-
-	const decrement = () => {
-		setCounter((previousCounter) => previousCounter - 1);
-	};
+	// const [connected, setConnected] = useState(false);
+	const { counter, increment, decrement } = useCounter();
 
 	return (
 		<section>
 			<h1>Counter: {counter}</h1>
 			<button onClick={increment}>Increment</button>
 			<button onClick={decrement}>Decrement</button>
-			<button onClick={() => setConnected((b) => !b)}>
+			{/* <button onClick={() => setConnected((b) => !b)}>
 				Connected: {connected.toString()}
-			</button>
+			</button> */}
 		</section>
 	);
 };

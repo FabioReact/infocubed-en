@@ -9,7 +9,7 @@ for (let i = 97; i <= 122; i++) {
 
 const Heroes = () => {
 	const [selectedLetter, setSelectedLetter] = useState<string>("a");
-	const { isLoading, isError, heroes, refetch } = useGetHeroesByLetter();
+	const { heroes, isError, isLoading, refetch } = useGetHeroesByLetter();
 	const callback = (letter: string) => {
 		setSelectedLetter(letter);
 		refetch(letter);
