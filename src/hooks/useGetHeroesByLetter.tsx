@@ -13,7 +13,7 @@ const getHeroesByLetter = (
 	// const controller = new AbortController();
 	// const signal = controller.signal;
 	// controller.abort();
-	return Fetcher.get<Hero[]>(`${BASE_URL}?name_like=^${letter}`, {
+	return Fetcher.get<Hero[]>(`${BASE_URL}/heroes?name_like=^${letter}`, {
 		method: "GET", // POST, PATCH, PUT, DELETE
 		signal: signal,
 	});

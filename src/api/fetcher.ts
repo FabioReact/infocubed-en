@@ -1,20 +1,23 @@
-import axios from 'axios'
+import axios from "axios";
 
-const BASE_URL = 'http://localhost:4000'
+const BASE_URL = "http://localhost:4000";
 
 type ErrorType = {
-	statusCode: number
-	errorMessage: string
-}
+	statusCode: number;
+	errorMessage: string;
+};
 
 class Fetcher {
-	static get<T = unknown>(url: string, options = {
-		method: 'GET',
-		// signal: typeof AbortSignal,
-	} as {
-		method: string,
-		signal: AbortSignal,
-	}) {
+	static async get<T = unknown>(
+		url: string,
+		options = {
+			method: "GET",
+			// signal: typeof AbortSignal,
+		} as {
+			method: string;
+			signal: AbortSignal;
+		},
+	) {
 		// return fetch(url, options).then(response => response.json())
 		// .catch(err => {
 		// 	return {
@@ -22,8 +25,9 @@ class Fetcher {
 		// 		errorMessage: 'Ressource not found'
 		// 	}
 		// })
-		return axios.get<T>(url, options).then(response => response.data)
+		const response = await axios.get<T>(url, options)
+		return response.data
 	}
 }
 
-export { Fetcher as default, BASE_URL }
+export { Fetcher as default, BASE_URL };
