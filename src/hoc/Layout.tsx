@@ -1,13 +1,24 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
 
 const Layout = () => {
+	const getActiveClassname = ({ isActive }: {
+		isActive: boolean
+		isPending: boolean
+	}) => (isActive ? 'text-red-600' : '')
 	return (
 		<div>
-			<header>
+			<header className='mb-4'>
 				<nav>
-					<ul>
-						<li>Home</li>
-						<li>Heroes</li>
+					<ul className='flex justify-center gap-4 font-bold text-xl'>
+						<li>
+							<NavLink className={getActiveClassname} to='/'>Home</NavLink>
+						</li>
+						<li>
+							<NavLink className={getActiveClassname} to='/heroes'>Heroes</NavLink>
+						</li>
+						<li>
+							<NavLink className={getActiveClassname} to='/counter'>Counter</NavLink>
+						</li>
 					</ul>
 				</nav>
 			</header>

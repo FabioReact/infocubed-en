@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+h1 {
+	/* text-align: center; */
+	@apply text-center text-4xl uppercase tracking-widest font-thin my-6;
+}
+
+button, .btn {
+	@apply bg-black text-white rounded py-1 px-5;
+}
