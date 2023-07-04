@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Hero } from "../types/hero";
-import Fetcher from '../api/fetcher'
+import Fetcher, { BASE_URL } from '../api/fetcher'
 
 const getHeroesByLetter = (
 	letter: string,
@@ -13,7 +13,7 @@ const getHeroesByLetter = (
 	// const controller = new AbortController();
 	// const signal = controller.signal;
 	// controller.abort();
-	return Fetcher.get<Hero[]>(`http://localhost:4000/heroes?name_like=^${letter}`, {
+	return Fetcher.get<Hero[]>(`${BASE_URL}?name_like=^${letter}`, {
 		method: "GET", // POST, PATCH, PUT, DELETE
 		signal: signal,
 	});
