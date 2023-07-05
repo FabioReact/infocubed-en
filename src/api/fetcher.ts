@@ -28,6 +28,11 @@ class Fetcher {
 		const response = await axios.get<T>(url, options)
 		return response.data
 	}
+
+	static async post<T>(url: string, data: unknown) {
+		const response = await axios.post<T>(url, data)
+		return response.data
+	}
 }
 
 export { Fetcher as default, BASE_URL };
