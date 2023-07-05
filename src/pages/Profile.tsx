@@ -1,9 +1,8 @@
-// rafce
-
-import { useAuthContext } from '../context/auth-context'
+import { useAuthContext } from "../context/auth-context";
 
 const Profile = () => {
-	const { connected, token, onLogout } = useAuthContext()
+	const { connected, token, onLogout } = useAuthContext();
+
 	return (
 		<section>
 			<h1>Profile</h1>
@@ -11,7 +10,7 @@ const Profile = () => {
 			<p>Value of token: {String(token)}</p>
 			<button onClick={onLogout}>Logout</button>
 		</section>
-	)
-}
+	);
+};
 
-export default Profile
+export default Profile;

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useRegisterForm } from "../hooks/useRegisterForm";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { registerUser } from "../api/users";
 import { useAuthContext } from "../context/auth-context";
 
@@ -14,7 +14,7 @@ const Register = () => {
 		validatePasswordConfirmation,
 	} = useRegisterForm();
 	const navigate = useNavigate();
-	const { onLogin } = useAuthContext();
+	const { connected, onLogin } = useAuthContext();
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const passwordConfirmationRef = useRef<HTMLInputElement>(null);
@@ -59,6 +59,8 @@ const Register = () => {
 		// Validating password / Setting errors
 		validatePassword(password);
 	};
+
+	if (connected) return <Navigate to='/profile' />
 
 	return (
 		<section>
