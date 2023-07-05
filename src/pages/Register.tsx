@@ -12,16 +12,16 @@ const passwordValidation = z
 	.string()
 	.min(10, { message: "Password should be at least 10 characters long" })
 	.max(100, { message: "Password should be at most 100 characters long" })
-	.regex(/^(?=.*?[A-Z]).*$/, {
+	.regex(/(?=.*?[A-Z])/, {
 		message: "Password should have at least one uppercase letter",
 	})
-	.regex(/^(?=.*?[a-z]).*$/, {
+	.regex(/(?=.*?[a-z])/, {
 		message: "Password should have at least one lowercase letter",
 	})
-	.regex(/^(?=.*?[0-9]).*$/, {
+	.regex(/(?=.*?[0-9])/, {
 		message: "Password should have at least one number",
 	})
-	.regex(/^(?=.*?[@&#*<>!?$€%]).*$/, {
+	.regex(/(?=.*?[@$!%*#?&<>])/, {
 		message: "Password should have at least one special character: @&#*<>!?$€%",
 	});
 
@@ -61,6 +61,22 @@ const Register = () => {
 
 		console.log(email, password, passwordConfirmation);
 	};
+
+	const onChangePassword = () => {
+		const password = passwordRef.current?.value;
+		const passValidationResult = passwordValidation.safeParse(password);
+		console.log(passValidationResult.success)
+		if (!passValidationResult.success) {
+			const errors = []
+			for (const error of passValidationResult.error.issues) {
+				console.log(error)
+				errors.push(error.message)
+			}
+			setPasswordError(errors)
+		} else {
+			setPasswordError([])
+		}
+	}
 	return (
 		<section>
 			<h1>Register</h1>
@@ -76,7 +92,7 @@ const Register = () => {
 				</fieldset>
 				<fieldset>
 					<label htmlFor="password">Password:</label>
-					<input type="text" id="password" name="password" ref={passwordRef} />
+					<input type="text" id="password" name="password" ref={passwordRef} onChange={onChangePassword} />
 					{passwordError.map((error) => (
 						<p className="ml-4 text-sm text-red-500 " key={error}>
 							{error}
