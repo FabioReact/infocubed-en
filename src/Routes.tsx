@@ -10,6 +10,7 @@ import Counter from "./pages/Counter";
 import HeroDetails from "./pages/HeroDetails";
 import Search from './pages/Search'
 import Register from './pages/Register'
+import Profile from './pages/Profile'
 
 export const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -17,9 +18,10 @@ export const router = createBrowserRouter(
 			<Route index element={<Home />} />
 			<Route path="heroes" element={<Heroes />} />
 			<Route path="heroes/:id" element={<HeroDetails />} />
-			<Route path="counter" element={<Counter />} />
 			<Route path="search" element={<Search />} />
+			<Route path="profile" element={<Profile />} />
 			<Route path="register" element={<Register />} />
+			<Route path="counter" element={<Counter />} />
 			<Route path="*" element={<p>404 - to implement</p>} />
 		</Route>,
 	),
