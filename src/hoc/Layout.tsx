@@ -22,6 +22,9 @@ const Layout = () => {
 						<li>
 							<NavLink className={getActiveClassname} to='/counter'>Counter</NavLink>
 						</li>
+						<li>
+							<NavLink className={getActiveClassname} to='/register'>Register</NavLink>
+						</li>
 					</ul>
 				</nav>
 			</header>
