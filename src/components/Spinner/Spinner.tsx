@@ -2,7 +2,7 @@ import styles from './spinner.module.css'
 
 const Spinner = () => {
 	return (
-		<div>
+		<div aria-label='spinner'>
 			<span className={styles.loader}></span>
 		</div>
 	)
