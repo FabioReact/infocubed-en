@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import HeroCard from "../components/HeroCard";
 import { useGetHeroesByLetter } from "../hooks/useGetHeroesByLetter";
 import { Link } from "react-router-dom";
+import Loading from "../hoc/Loading";
 
 const arrayOfLetters: Array<string> = [];
 for (let i = 97; i <= 122; i++) {
@@ -52,17 +53,19 @@ const Heroes = () => {
 				))}
 			</ul>
 			<div className="flex flex-wrap gap-4 justify-center">
-				{isLoading && <p>Loading...</p>}
-				{isError && (
-					<p className="text-red-500">We have an error while fetching heroes</p>
-				)}
-				{!isLoading &&
-					!isError &&
-					heroes.map((hero) => (
-						<Link to={`${hero.id}`}>
-							<HeroCard key={hero.id} hero={hero} />
-						</Link>
-					))}
+				<Loading isLoading={isLoading}>
+					{isError && (
+						<p className="text-red-500">
+							We have an error while fetching heroes
+						</p>
+					)}
+					{!isError &&
+						heroes.map((hero) => (
+							<Link to={`${hero.id}`}>
+								<HeroCard key={hero.id} hero={hero} />
+							</Link>
+						))}
+				</Loading>
 			</div>
 		</section>
 	);
