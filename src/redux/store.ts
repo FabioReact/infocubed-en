@@ -1,11 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
 import favoriteHeroesReducer from './reducers/favoriteHeroesSlice'
+import { usersApi } from './services/users'
 
 // useReducer((state, action) => {}, initialValues)
 
 export const store = configureStore({
   reducer: {
 		favoriteHeroes: favoriteHeroesReducer,
+		[usersApi.reducerPath]: usersApi.reducer,
+	},
+	middleware: (getDefaultMiddleware) => {
+		return getDefaultMiddleware().concat(usersApi.middleware)
 	},
 })
 
