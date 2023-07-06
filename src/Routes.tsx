@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import { lazy } from "react";
 import Users, { usersLoader } from "./pages/Users";
 import { getUsers } from "./api/users";
+import Battle from './pages/Battles'
 
 // lazy
 const Home = lazy(() => import("./pages/Home"));
@@ -45,6 +46,7 @@ export const router = createBrowserRouter(
 			/>
 			<Route path="users" element={<Users />} loader={usersLoader} />
 			<Route path="register" element={<Register />} />
+			<Route path="battle" element={<Battle />} />
 			<Route path="login" element={<Login />} />
 			<Route path="counter" element={<Counter />} />
 			<Route path="dashboard" element={<Dashboard />}>

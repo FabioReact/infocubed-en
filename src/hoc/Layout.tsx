@@ -24,6 +24,11 @@ const Layout = () => {
 							</NavLink>
 						</li>
 						<li>
+							<NavLink className={getActiveClassname} to="/battle">
+								Battle
+							</NavLink>
+						</li>
+						<li>
 							<NavLink className={getActiveClassname} to="/heroes">
 								Heroes
 							</NavLink>
