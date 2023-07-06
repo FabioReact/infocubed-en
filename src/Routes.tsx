@@ -13,18 +13,29 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Dashboard, { Information, Products, Services } from "./pages/Dashboard";
 import PrivateRoute from "./hoc/PrivateRoute";
-import Login from './pages/Login'
-import { lazy } from 'react'
+import Login from "./pages/Login";
+import { lazy } from "react";
+import { getHeroById } from "./api/heroes";
+import { Hero } from "./types/hero";
+import Users from "./pages/Users";
+import { getUsers } from "./api/users";
 
 // lazy
-const Home = lazy(() => import('./pages/Home'));
+const Home = lazy(() => import("./pages/Home"));
+
+// Create a /users Route
+// That route shows a page (lazy loaded) that will show the emails of all the users of my app (http://localhost:4000/users)
+// You should use the loader prop in the route to access that data
 
 export const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<Layout />}>
 			<Route index element={<Home />} />
 			<Route path="heroes" element={<Heroes />} />
-			<Route path="heroes/:id" element={<HeroDetails />} />
+			<Route
+				path="heroes/:id"
+				element={<HeroDetails />}
+			/>
 			<Route path="search" element={<Search />} />
 			<Route
 				path="profile"
@@ -34,6 +45,7 @@ export const router = createBrowserRouter(
 					</PrivateRoute>
 				}
 			/>
+			<Route path="users" element={<Users />} loader={() => getUsers()} />
 			<Route path="register" element={<Register />} />
 			<Route path="login" element={<Login />} />
 			<Route path="counter" element={<Counter />} />

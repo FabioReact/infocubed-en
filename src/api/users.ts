@@ -10,3 +10,9 @@ export const loginUser = async (user: User) => {
 	const data = await Fetcher.post<LoginResponse>(`${BASE_URL}/login`, user)
 	return data
 }
+
+
+export const getUsers = async () => {
+	const data = await Fetcher.get<User[]>(`${BASE_URL}/users`)
+	return data
+}

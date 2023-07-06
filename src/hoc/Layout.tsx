@@ -38,6 +38,11 @@ const Layout = () => {
 								Counter
 							</NavLink>
 						</li>
+						<li>
+							<NavLink className={getActiveClassname} to="/users">
+								Users
+							</NavLink>
+						</li>
 
 						{connected ? (
 							<li>
