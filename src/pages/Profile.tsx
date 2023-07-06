@@ -1,5 +1,6 @@
 import { useAuthContext } from "../context/auth-context";
-import { useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { removeFavoriteHero } from '../redux/reducers/favoriteHeroesSlice'
 
 // I should have a button to remove each hero from my favorite
 
@@ -8,6 +9,11 @@ const Profile = () => {
 	const favoritesHeroes = useAppSelector(
 		(state) => state.favoriteHeroes.heroes,
 	);
+	const dispatch = useAppDispatch()
+
+	const onRemoveHandler = (id: number) => {
+		dispatch(removeFavoriteHero(id))
+	}
 
 	return (
 		<section>
@@ -20,6 +26,7 @@ const Profile = () => {
 					{favoritesHeroes.map((hero) => (
 						<li key={hero.id}>
 							{hero.id} - {hero.name}
+							<button onClick={() => onRemoveHandler(hero.id)}>Remove</button>
 						</li>
 					))}
 				</ul>
