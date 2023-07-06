@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Dashboard, { Information, Products, Services } from "./pages/Dashboard";
 import PrivateRoute from "./hoc/PrivateRoute";
+import Login from './pages/Login'
 
 export const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -30,6 +31,7 @@ export const router = createBrowserRouter(
 				}
 			/>
 			<Route path="register" element={<Register />} />
+			<Route path="login" element={<Login />} />
 			<Route path="counter" element={<Counter />} />
 			<Route path="dashboard" element={<Dashboard />}>
 				<Route path="products" element={<Products />} />
