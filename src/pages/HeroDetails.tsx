@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 // import HeroCard from '../components/HeroCard'
 import { Suspense, lazy } from "react";
 import { getHeroById } from '../api/heroes'
+import { useAppDispatch } from '../redux/hooks'
+import { addFavoriteHero } from '../redux/reducers/favoriteHeroesSlice'
 
 const HeroCard = lazy(
 	() =>
@@ -13,6 +15,7 @@ const HeroCard = lazy(
 
 const HeroDetails = () => {
 	const { id } = useParams();
+	const dispatch = useAppDispatch()
 	// getHeroById/3 -> fetch -> (cached)
 	// getHeroById/5 -> fetch -> (cached)
 	// getHeroById/5 -> cached
@@ -30,6 +33,12 @@ const HeroDetails = () => {
 		// enabled: false
 	});
 
+	const onAddToFavorite = () => {
+		if (hero) {
+			dispatch(addFavoriteHero(hero))
+		}
+	}
+
 	return (
 		<section>
 			<h1>Hero Details</h1>
@@ -38,7 +47,12 @@ const HeroDetails = () => {
 				<p className="text-red-500">Error: {(error as any)?.message}</p>
 			)}
 			<Suspense fallback={<p>Loading Hero...</p>}>
-				{isSuccess && <HeroCard hero={hero} />}
+				{isSuccess &&
+				<>
+					<button onClick={onAddToFavorite}>Add to favorite</button>
+					<HeroCard hero={hero} />
+				</>
+				}
 			</Suspense>
 		</section>
 	);
