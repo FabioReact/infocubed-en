@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { loginUser } from "../api/users";
 import { useAuthContext } from "../context/auth-context";
-import { LoginResponse } from '../types/user'
 
 const Login = () => {
 	const navigate = useNavigate();
