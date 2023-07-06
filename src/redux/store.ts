@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import favoriteHeroesReducer from './reducers/favoriteHeroesSlice'
 import { usersApi } from './services/users'
+import { heroesApi } from './services/heroes'
 
 // useReducer((state, action) => {}, initialValues)
 
@@ -8,9 +9,10 @@ export const store = configureStore({
   reducer: {
 		favoriteHeroes: favoriteHeroesReducer,
 		[usersApi.reducerPath]: usersApi.reducer,
+		[heroesApi.reducerPath]: heroesApi.reducer,
 	},
 	middleware: (getDefaultMiddleware) => {
-		return getDefaultMiddleware().concat(usersApi.middleware)
+		return getDefaultMiddleware().concat(usersApi.middleware, heroesApi.middleware)
 	},
 })
 
