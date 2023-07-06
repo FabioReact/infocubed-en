@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import { z } from "zod";
 
 const emailValidation = z.string().email();

@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import Heroes from "./pages/Heroes";
 import Layout from "./hoc/Layout";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
 import Counter from "./pages/Counter";
 import HeroDetails from "./pages/HeroDetails";
 import Search from "./pages/Search";
@@ -14,6 +14,10 @@ import Profile from "./pages/Profile";
 import Dashboard, { Information, Products, Services } from "./pages/Dashboard";
 import PrivateRoute from "./hoc/PrivateRoute";
 import Login from './pages/Login'
+import { lazy } from 'react'
+
+// lazy
+const Home = lazy(() => import('./pages/Home'));
 
 export const router = createBrowserRouter(
 	createRoutesFromElements(

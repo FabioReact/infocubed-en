@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Fetcher, { BASE_URL } from '../api/fetcher'
-import HeroCard from '../components/HeroCard'
+// import HeroCard from '../components/HeroCard'
 import { Hero } from '../types/hero'
+import { Suspense, lazy } from 'react'
+
+const HeroCard = lazy(() => import('../components/HeroCard'))
 
 const HeroDetails = () => {
 	const { id } = useParams();
@@ -21,8 +24,10 @@ const HeroDetails = () => {
 		<section>
 			<h1>Hero Details - {id}</h1>
 			{isLoading && <p>Loading...</p>}
-			{isError && <p className='text-red-500'>Error: {error?.message}</p>}
-			{isSuccess && <HeroCard hero={hero} />}
+			{isError && <p className='text-red-500'>Error: {(error as any)?.message}</p>}
+			<Suspense fallback={ <p>Loading Hero...</p> }>
+				{isSuccess && <HeroCard hero={hero} />}
+			</Suspense>
 		</section>
 	);
 };
