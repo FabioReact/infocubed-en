@@ -1,5 +1,6 @@
 import { useLoaderData } from 'react-router-dom'
 import { User } from '../types/user'
+import { getUsers } from '../api/users'
 
 const Users = () => {
 	const users = useLoaderData() as User[]
@@ -12,5 +13,7 @@ const Users = () => {
 		</section>
 	)
 }
+
+export const usersLoader = () => getUsers()
 
 export default Users

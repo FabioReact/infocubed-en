@@ -15,9 +15,7 @@ import Dashboard, { Information, Products, Services } from "./pages/Dashboard";
 import PrivateRoute from "./hoc/PrivateRoute";
 import Login from "./pages/Login";
 import { lazy } from "react";
-import { getHeroById } from "./api/heroes";
-import { Hero } from "./types/hero";
-import Users from "./pages/Users";
+import Users, { usersLoader } from "./pages/Users";
 import { getUsers } from "./api/users";
 
 // lazy
@@ -45,7 +43,7 @@ export const router = createBrowserRouter(
 					</PrivateRoute>
 				}
 			/>
-			<Route path="users" element={<Users />} loader={() => getUsers()} />
+			<Route path="users" element={<Users />} loader={usersLoader} />
 			<Route path="register" element={<Register />} />
 			<Route path="login" element={<Login />} />
 			<Route path="counter" element={<Counter />} />
